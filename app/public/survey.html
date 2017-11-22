@@ -175,7 +175,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script>
-		
+
 		$("#submit").on("click", function(){
 
 			// Check if user filled out all fields
@@ -192,7 +192,23 @@
 			// If the form is filled out..
 			if (checkForm() === true) {
 				// Create an object with form data
-				alert("done!");
+		    	var formData = {
+		    		name: $("#name").val(),
+		    		photo: $("#photo").val(),
+		    		scores: [$("#questionOne").val(),
+		    			$("#questionTwo").val(),
+		    			$("#questionThree").val(),
+		    			$("#questionFour").val(),
+		    			$("#questionFive").val(),
+		    			$("#questionSix").val(),
+		    			$("#questionSeven").val(),
+		    			$("#questionEight").val(),
+		    			$("#questionNine").val(),
+		    			$("#questionTen").val()
+		    		]
+		    	}
+			} else {
+				alert("Please fill out all fields before submitting!");
 			}
 			return false;
 		});

@@ -4,7 +4,7 @@
   // Setup  
   // =====================================================================================
 
-    // NPM Packages
+    // Dependencies
     var express = require("express");
     var bodyParser = require('body-parser');
     var path = require('path');
@@ -13,11 +13,16 @@
     var app = express();
 
     // Initial Port
-    var PORT = 3000;
+    var PORT = process.env.PORT || 3000;
 
     // Set up Express app to handle data parsing
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
+
+    // Routes
+    require("./app/routing/apiRoutes")(app);
+    require("./app/routing/htmlRoutes")(app);
+
 
   // Listen
   // =====================================================================================

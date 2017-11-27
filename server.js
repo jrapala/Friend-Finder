@@ -18,6 +18,7 @@
     // Set up Express app to handle data parsing
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
+    
 
     // Routes
     require("./app/routing/apiRoutes")(app);

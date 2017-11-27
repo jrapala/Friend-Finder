@@ -1,7 +1,7 @@
 // Dependencies 
 // =====================================================================================
  
-var friendData = require("../data/friends");
+	var friendData = require("../data/friends");
 
 
 // API Routes  
@@ -19,35 +19,33 @@ var friendData = require("../data/friends");
 
    			// // Set up variables
    			var formData = req.body;
-   			// var scores = formData.scores;
-   			// var totalDifference = 0;
+   			var userScores = req.body["scores[]"]
+   			var totalDifference;
 
    			// Create best match object
 	        var bestMatch = {
-	            name: "Ahmed",
-	            photo: "https://i.imgur.com/2ybwY41h.png",
-	            totalDifference: 0
+	            name: "",
+	            photo: "",
+	            // Set high initial totalDifference limit since we want the lowest difference possible
+	            totalDifference: 100000
 	        };
 
-	     //    // Loop through all friends best match
-	     //    for (var i = 0; i < friendData.length; i++) {
-	     //    	totalDifference = 0;
+	        // Loop through all friends best match
+	        for (var i = 0; i < friendData.length; i++) {
+	        	totalDifference = 0;
 
-	     //    	// Loop through scores of each friend
-	     //    	// for (var j = 0; i < friendData[i].scores[j].length; j++) {
-	     //    		//totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
-	     //    		                //Find best friend match
-      //           // if (totalDifference <= bestFriend.friendDifference) {
+	        	// Loop through scores of each friend
+	        	for (var j = 0; j < friendData[i].scores.length; j++) {
+					totalDifference += (Math.abs(parseInt(userScores[j]) - parseInt(friendData[i].scores[j])));
+					console.log(totalDifference);
 
-      //           //     bestFriend.name = friends[i].name;
-      //           bestFriend.name = friends[0].name;
-      //           //     bestFriend.photo = friends[i].photo;
-      //           bestFriend.photo = friends[0].photo;
-      //           //     bestFriend.friendDifference = totalDifference;
-
-      //           // }
-	     //    }
-	        
+            		if (totalDifference <= bestMatch.totalDifference) {
+              			bestMatch.name = friendData[i].name;
+              			bestMatch.photo = friendData[i].photo;
+              			bestMatch.totalDifference = totalDifference;
+					}
+				}
+	        }
 
       		// Add form data to friends.js
       		friendData.push(formData);

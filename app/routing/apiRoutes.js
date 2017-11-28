@@ -22,15 +22,19 @@
    			var userScores;
    			var totalDifference;
 
-   			// Fix scores key of new object
-   			console.log(formData);
+   			// Fix scores key of submitted object
     		Object.defineProperty(formData, 'scores',
         		Object.getOwnPropertyDescriptor(formData, 'scores[]'));
     		delete formData['scores[]'];
 
+    		// Set up variable
     		userScores = req.body["scores"]
 
-   			console.log(formData);
+    		// Change values of scores key to integers
+    		for (var k = 0; k<userScores.length; k++) {
+    			userScores[k] = parseInt(userScores[k]);
+    		}
+
    			// Create best match object
 	        var bestMatch = {
 	            name: "",

@@ -184,7 +184,7 @@
 		      		<div class="modal-body">
 		        		<h2 class="text-center" id="matchName"></h2>
 		        		<div class="text-center">
-		        			<img id="matchImg" src="" alt="">
+		        			<img id="matchImg" src="" style="max-height: 260px">
 		        		</div>
 		      		</div>
 		      		<div class="modal-footer">
@@ -247,8 +247,11 @@
 
           			// If data exists, update modal
           			if (data) {
+          				var matchName = data.name;
 						$("#matchName").text(data.name);
 	    				$('#matchImg').attr("src", data.photo);
+						$('#matchImg').attr("alt", "Picture of " + data.name);
+
 
 		    			// Show the modal with the best match 
 		    			$("#resultsModal").modal('toggle');	
@@ -274,10 +277,6 @@
 				alert("Please fill out all fields before submitting!");
 			}
 		});
-
-		$('#modal-close').on('click', function() {
-			location.reload();
-		})
 
 	</script>
 

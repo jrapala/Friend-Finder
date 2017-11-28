@@ -28,14 +28,27 @@ var friendData = [
     "name":"Annie",
     "photo": "https://i.imgur.com/tBbgRWbh.png",
     "scores":[5,4,5,1,2,1,5,4,5,3]
+  },
+  {
+    "name":"Ashley",
+    "photo": "https://i.imgur.com/yQ0vWj8h.png",
+    "scores":[1,2,1,1,1,1,2,1,5,1]
+  },
+  {
+    "name":"Andre",
+    "photo": "https://i.imgur.com/dIkSURah.png",
+    "scores":[5,5,5,5,5,5,5,5,5,5]
+  },
+  {
+    "name":"Alfred",
+    "photo": "https://i.imgur.com/f28JDM4h.png",
+    "scores":[3,3,1,1,4,1,5,1,5,1]
+  },
+    {
+    "name":"Anthony",
+    "photo": "https://i.imgur.com/rtB7hL8h.png",
+    "scores":[5,4,4,4,1,4,2,2,5,5]
   }
 ];
 
 module.exports = friendData;
-
-
-// More images
-// https://i.imgur.com/yQ0vWj8h.png
-// https://i.imgur.com/dIkSURah.png
-// https://i.imgur.com/f28JDM4h.png
-// https://i.imgur.com/rtB7hL8h.png

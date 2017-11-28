@@ -17,11 +17,20 @@
 
    		app.post("/api/friends", function(req, res) {
 
-   			// // Set up variables
+   			// Set up variables
    			var formData = req.body;
-   			var userScores = req.body["scores[]"]
+   			var userScores;
    			var totalDifference;
 
+   			// Fix scores key of new object
+   			console.log(formData);
+    		Object.defineProperty(formData, 'scores',
+        		Object.getOwnPropertyDescriptor(formData, 'scores[]'));
+    		delete formData['scores[]'];
+
+    		userScores = req.body["scores"]
+
+   			console.log(formData);
    			// Create best match object
 	        var bestMatch = {
 	            name: "",
@@ -37,8 +46,8 @@
 	        	// Loop through scores of each friend
 	        	for (var j = 0; j < friendData[i].scores.length; j++) {
 					totalDifference += (Math.abs(parseInt(userScores[j]) - parseInt(friendData[i].scores[j])));
-					console.log(totalDifference);
 
+            		// Update best match if current friend is even more similar
             		if (totalDifference <= bestMatch.totalDifference) {
               			bestMatch.name = friendData[i].name;
               			bestMatch.photo = friendData[i].photo;
@@ -47,7 +56,7 @@
 				}
 	        }
 
-      		// Add form data to friends.js
+      		// Add form data to API
       		friendData.push(formData);
 
       		// Respond with best match

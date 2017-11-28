@@ -184,11 +184,11 @@
 		      		<div class="modal-body">
 		        		<h2 class="text-center" id="matchName"></h2>
 		        		<div class="text-center">
-		        			<img id="matchImg" src="http://lorempixel.com/400/400/" alt="">
+		        			<img id="matchImg" src="" alt="">
 		        		</div>
 		      		</div>
 		      		<div class="modal-footer">
-		        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        		<button type="button" class="btn btn-default" data-dismiss="modal" id="modal-close">Close</button>
 		      		</div>
 		    	</div>
 	  		</div>
@@ -206,6 +206,7 @@
 		// On click function for Submit button
 		$("#submit").on("click", function(){
 
+			// Prevent default submit function
 			event.preventDefault();
 
 			// Check if user filled out all fields
@@ -238,15 +239,13 @@
 		    		]
 		    	}
 
-		    	console.log(formData);
-
 	    		// Grab the current URL
 	    		var currentURL = window.location.origin;
 
 		    	// Post object to server
 		    	$.post(currentURL + "/api/friends", formData, function(data) {
 
-          			// If data exists, alert user that information was sent
+          			// If data exists, update modal
           			if (data) {
 						$("#matchName").text(data.name);
 	    				$('#matchImg').attr("src", data.photo);
@@ -269,11 +268,16 @@
 		    		$("#questionNine").val('');
 		   			$("#questionTen").val('');
         		});
-        		// If data doesn't exist, prompt user to fill out form..
-				} else {
-					alert("Please fill out all fields before submitting!");
-				}
+
+        	// If data doesn't exist, prompt user to fill out form..
+			} else {
+				alert("Please fill out all fields before submitting!");
+			}
 		});
+
+		$('#modal-close').on('click', function() {
+			location.reload();
+		})
 
 	</script>
 
